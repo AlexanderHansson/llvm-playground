@@ -1,0 +1,42 @@
+BITCODE:
+    https://llvm.org/docs/BitCodeFormat.html
+
+LLVM IR:
+    https://llvm.org/docs/LangRef.html
+
+clang -emit-llvm -c -S <file.c>:
+    emits optimized LLVM IR
+
+clang -emit-llvm -c <file.c>:
+    emits LLVM bitcode
+
+llvm-as <file.ll> -o <file.bc>:
+    takes LLVM assembly and compiles it to LLVM bitcode format https://llvm.org/docs/BitCodeFormat.html
+
+hexdump -c <file.bc>:
+    hexdumps bitcode
+
+llvm-dis <file.bc> -o <file.ll>:
+    disassembles bitcode to llvm IR
+
+llvm-link <file1.bc> <file2.bc> -o <outfile.bc>
+    links serveral bitcode files
+
+lli <file.bc>:
+    interpreter that JIT-compiles llvm IR or bitcode format
+
+llc:
+    instr-select, reg-alloc etc
+    compiles bitcode to target-arch assembly
+
+opt -O<0-3> (-analyze) input.bc:
+    analyzes OR optimizes the bitcode
+    opt -help lists all passes available
+
+    opt -analyze only runs analyze passes
+
+    opt -O3 -S <file.ll> -o <file_opt.ll>
+        optimizes IR
+
+    opt --dce runs dead code elimination, see opt --help for more info
+
